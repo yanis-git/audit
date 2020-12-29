@@ -1,3 +1,7 @@
+----
+tags: accessibility
+----
+
 ## prefers-reduce-animation
 
 ### Application
@@ -6,7 +10,7 @@ Est-ce que des animations sont utilisées dans l'application ?
 
 ### Vérification
 
-Est ce aue la désactivation des animations est implémentée via la media query `prefers-reduce-animation`.
+Est-ce que la désactivation des animations est implémentée via la media query `prefers-reduce-animation`.
 
 ```css
 @media (prefers-reduced-motion: reduce) {

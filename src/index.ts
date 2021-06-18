@@ -18,7 +18,8 @@ interface Result {
   audits: { [key: string]: AuditResult };
 }
 
-const checkIfLinkInsideLabel = async (page: any): Promise<AuditResult | false> => {
+type AuditFunction = (page: any) => Promise<AuditResult | false>;
+const checkIfLinkInsideLabel: AuditFunction = async (page: any): Promise<AuditResult | false> => {
   const size = await page.evaluate(() => document.querySelectorAll("label a")?.length);
   if(size === 0){
       return false;
@@ -28,7 +29,17 @@ const checkIfLinkInsideLabel = async (page: any): Promise<AuditResult | false> =
     message: "Pour des raisons d'accessibilité, vous ne pouvez avoir de liens dans un label de formulaire",
   }
 };
-const rules = [checkIfLinkInsideLabel];
+const checkIfHtmlTagHasLangAttribute: AuditFunction = async (page: any): Promise<AuditResult | false> => {
+  const size = await page.evaluate(() => document.querySelectorAll("html[lang]")?.length);
+  if(size === 1){
+      return false;
+  }
+  return {
+    name: 'check-if-html-tag-has-lang-attribute',
+    message: "La balise HTML doit absolument définir l'attribut lang afin de configurer la langue par défaut de votre contenu",
+  }
+};
+const rules = [checkIfLinkInsideLabel, checkIfHtmlTagHasLangAttribute];
 
 (async () => {
   const options = commandLineArgs(optionDefinitions);

@@ -1,0 +1,29 @@
+{
+  "name": "audit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EmmanuelDemey/audit.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EmmanuelDemey/audit/issues"
+  },
+  "homepage": "https://github.com/EmmanuelDemey/audit#readme",
+  "devDependencies": {
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.4"
+  },
+  "dependencies": {
+    "command-line-args": "^5.1.1",
+    "eco-index-audit": "0.0.1",
+    "puppeteer": "^10.0.0"
+  }
+}

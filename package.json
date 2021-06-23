@@ -23,7 +23,9 @@
   },
   "dependencies": {
     "command-line-args": "^5.1.1",
-    "eco-index-audit": "0.0.1",
-    "puppeteer": "^10.0.0"
+    "eco-index-audit": "0.1.0",
+    "puppeteer": "^10.0.0",
+    "moment": "^4.3.4"
+
   }
 }

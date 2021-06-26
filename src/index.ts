@@ -46,6 +46,18 @@ const checkIfLinkInsideLabel: AuditFunction = async (page: any): Promise<AuditRe
   };
 };
 
+const checkIfButtonWithoutType: AuditFunction = async (page: any): Promise<AuditResult | false> => {
+  const size = await page.evaluate(() => document.querySelectorAll("button:not(type)")?.length);
+  if (size === 0) {
+    return false;
+  }
+  return {
+    name: "check-if-button-without-type",
+    message:
+      "Pour éviter des éventuels problèmes pour vos utilisateurs, nous vous conseillons de toujours définir l'attribut type pour un bouton",
+  };
+};
+
 const checkIfImageWithoutAlt: AuditFunction = async (page: any): Promise<AuditResult | false> => {
   const size = await page.evaluate(() => document.querySelectorAll("img:not([alt])")?.length);
   if (size === 0) {
@@ -81,7 +93,12 @@ const checkIfHtmlTagHasLangAttribute: AuditFunction = async (
       "La balise HTML doit absolument définir l'attribut lang afin de configurer la langue par défaut de votre contenu",
   };
 };
-const rulesPerPage = [checkIfLinkInsideLabel, checkIfHtmlTagHasLangAttribute, checkIfImageWithoutAlt];
+const rulesPerPage = [
+  checkIfLinkInsideLabel,
+  checkIfHtmlTagHasLangAttribute,
+  checkIfImageWithoutAlt,
+  checkIfButtonWithoutType,
+];
 const rules = [checkIfMomentDependency];
 
 (async () => {

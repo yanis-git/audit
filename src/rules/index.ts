@@ -5,6 +5,7 @@ import {checkIfButtonWithoutType} from "./checkIfButtonWithoutType";
 import {checkIfMomentDependency} from "./checkIfMomentDependency";
 import {checkIfButtonInsideALink} from "./checkIfButtonInsideALink";
 import {checkIfLinkInsideAButton} from "./checkIfLinkInsideAButton";
+import {checkIfMainLang} from "./checkIfMainLang";
 
 export const rulesPerPage = [
     checkIfLinkInsideLabel,
@@ -12,6 +13,7 @@ export const rulesPerPage = [
     checkIfImageWithoutAlt,
     checkIfButtonWithoutType,
     checkIfButtonInsideALink,
-    checkIfLinkInsideAButton
+    checkIfLinkInsideAButton,
+    checkIfMainLang
 ];
 export const rules = [checkIfMomentDependency];

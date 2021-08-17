@@ -1,7 +1,13 @@
+import {RemoteWithRefs} from "simple-git";
+
 export interface Metadata {
     packageJson?: any;
+    git?: GitMetadata
 }
 
+export interface GitMetadata {
+    remotes?: RemoteWithRefs[]
+}
 export type AuditFunction = (page: any, metadata: Metadata) => Promise<AuditResult | false>;
 
 export interface AuditResult {

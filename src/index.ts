@@ -1,5 +1,6 @@
 import {rules, rulesPerPage} from "./rules";
 import {Metadata, Result} from "./types";
+import {getGitMetadata} from "./metadatas/git";
 
 const commandLineArgs = require("command-line-args");
 const audit = require("eco-index-audit/src/ecoindex/audit");
@@ -25,11 +26,15 @@ const optionDefinitions = [
   const page = await browser.newPage();
 
   const metadata: Metadata = {};
+  const fullPath = path.resolve(options.path);
+
   try {
-    const fullPath = path.resolve(options.path);
     const packageJson = require(fullPath + "/package.json");
     metadata.packageJson = packageJson;
   } catch (e) {}
+
+  const git = await getGitMetadata(fullPath);
+  metadata.git = git;
 
   for (let rule of rules) {
     const auditResult = await rule(page, metadata);

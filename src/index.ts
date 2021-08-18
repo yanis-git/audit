@@ -1,6 +1,7 @@
 import {rules, rulesPerPage} from "./rules";
 import {Metadata, Result} from "./types";
 import {getGitMetadata} from "./metadatas/git";
+import {getReadmeMetadata} from "./metadatas/readme";
 
 const commandLineArgs = require("command-line-args");
 const audit = require("eco-index-audit/src/ecoindex/audit");
@@ -35,7 +36,9 @@ const optionDefinitions = [
 
   const git = await getGitMetadata(fullPath);
   metadata.git = git;
+  metadata.readme = getReadmeMetadata(fullPath);
 
+  console.log(metadata)
   for (let rule of rules) {
     const auditResult = await rule(page, metadata);
     if (auditResult && result.audits) {

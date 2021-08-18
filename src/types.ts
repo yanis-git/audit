@@ -2,7 +2,8 @@ import {RemoteWithRefs} from "simple-git";
 
 export interface Metadata {
     packageJson?: any;
-    git?: GitMetadata
+    git?: GitMetadata;
+    readme?: boolean
 }
 
 export interface GitMetadata {

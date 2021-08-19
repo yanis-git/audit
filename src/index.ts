@@ -38,7 +38,6 @@ const optionDefinitions = [
   metadata.git = git;
   metadata.readme = getReadmeMetadata(fullPath);
 
-  console.log(metadata)
   for (let rule of rules) {
     const auditResult = await rule(page, metadata);
     if (auditResult && result.audits) {

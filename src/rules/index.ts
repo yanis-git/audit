@@ -9,6 +9,7 @@ import {checkIfMainLang} from "./checkIfMainLang";
 import {checkIfCypressAxe} from "./checkIfCypressAxe";
 import {checkIfLandmarks} from "./checkIfLandmarks";
 import {checkIfReadme} from "./checkIfReadme";
+import {checkIfTitle} from "./checkIfTitle";
 
 export const rulesPerPage = [
     checkIfLinkInsideLabel,
@@ -19,6 +20,7 @@ export const rulesPerPage = [
     checkIfLinkInsideAButton,
     checkIfMainLang,
     checkIfLandmarks,
-    checkIfReadme
+    checkIfReadme,
+    checkIfTitle
 ];
 export const rules = [checkIfMomentDependency, checkIfCypressAxe];

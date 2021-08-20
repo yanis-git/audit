@@ -19,7 +19,7 @@ npm run start -- --path ./ --url https://google.com/
 
 ## Tech Stack
 
-Typescript, Puppeteer
+Typescript, Puppeteer, Github Actions
 
 
 ## Authors

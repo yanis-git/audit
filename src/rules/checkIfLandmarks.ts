@@ -1,7 +1,8 @@
 import {AuditFunction, AuditResult, Metadata} from "../types";
+import {Page} from "puppeteer";
 
-export const checkIfLandmarks: AuditFunction = async (page: any, metadata: Metadata): Promise<AuditResult | false> => {
-    const size = await page.evaluate(() => document.querySelectorAll("header, main, footer, nav, aside")?.length);
+export const checkIfLandmarks: AuditFunction = async (page: Page): Promise<AuditResult | false> => {
+    const size = await page.evaluate(() => document.querySelectorAll("header, main, footer, nav, aside")?.length) as number;
     if (size > 0) {
         return false;
     }

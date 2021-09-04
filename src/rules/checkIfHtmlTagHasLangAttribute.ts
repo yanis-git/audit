@@ -1,8 +1,8 @@
 import {AuditFunction, AuditResult, Metadata} from "../types";
+import {Page} from "puppeteer";
 
 export const checkIfHtmlTagHasLangAttribute: AuditFunction = async (
-    page: any,
-    metadata: Metadata
+    page: Page
 ): Promise<AuditResult | false> => {
     const size = await page.evaluate(() => document.querySelectorAll("html[lang]")?.length);
     if (size === 1) {

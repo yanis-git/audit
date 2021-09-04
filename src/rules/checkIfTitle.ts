@@ -1,6 +1,7 @@
 import {AuditFunction, AuditResult} from "../types";
+import {Page} from "puppeteer";
 
-export const checkIfTitle: AuditFunction = async (page: any): Promise<AuditResult | false> => {
+export const checkIfTitle: AuditFunction = async (page: Page): Promise<AuditResult | false> => {
     const error = {
         name: "check-if-title",
         message:

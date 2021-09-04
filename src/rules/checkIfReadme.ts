@@ -1,6 +1,7 @@
 import {AuditFunction, AuditResult, Metadata} from "../types";
+import {Page} from "puppeteer";
 
-export const checkIfReadme: AuditFunction = async (page: any, {readme}: Metadata): Promise<AuditResult | false> => {
+export const checkIfReadme: AuditFunction = async (page: Page, {readme}: Metadata): Promise<AuditResult | false> => {
     if (readme){
         return false;
     }

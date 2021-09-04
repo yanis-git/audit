@@ -2,12 +2,12 @@ import {rules, rulesPerPage} from "./rules";
 import {Metadata, Result} from "./types";
 import {getGitMetadata} from "./metadatas/git";
 import {getReadmeMetadata} from "./metadatas/readme";
+import {Page} from "puppeteer";
 
 const commandLineArgs = require("command-line-args");
 const audit = require("eco-index-audit/src/ecoindex/audit");
 const puppeteer = require("puppeteer");
 const path = require("path");
-
 
 const optionDefinitions = [
   { name: "path", type: String },
@@ -24,7 +24,7 @@ const optionDefinitions = [
   };
 
   const browser = await puppeteer.launch();
-  const page = await browser.newPage();
+  const page: Page = await browser.newPage();
 
   const metadata: Metadata = {};
   const fullPath = path.resolve(options.path);

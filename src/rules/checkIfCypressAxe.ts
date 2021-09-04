@@ -1,6 +1,7 @@
 import {AuditFunction, AuditResult, Metadata} from "../types";
+import {Page} from "puppeteer";
 
-export const checkIfCypressAxe: AuditFunction = async (page: any, metadata: Metadata): Promise<AuditResult | false> => {
+export const checkIfCypressAxe: AuditFunction = async (page: Page, metadata: Metadata): Promise<AuditResult | false> => {
     if (!Object.keys(metadata.packageJson.devDependencies).includes("cypress")) {
         return false;
     }

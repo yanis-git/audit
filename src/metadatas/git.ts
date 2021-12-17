@@ -11,7 +11,9 @@ export const getGitMetadata = async (baseDir: string) => {
     try {
         const remotes = await gitClient.getRemotes(true);
         git.remotes = remotes;
-    } catch (e) {}
+    } catch (e) {
+        console.error(e)
+    }
 
     return git;
 }

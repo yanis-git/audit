@@ -1,4 +1,4 @@
-import {AuditFunction, AuditResult, Metadata} from "../types";
+import {AuditFunction, AuditResult} from "../types";
 import {Page} from "puppeteer";
 
 export const checkIfHtmlTagHasLangAttribute: AuditFunction = async (

@@ -3,14 +3,18 @@ import {Metadata, Result} from "./types";
 import {getGitMetadata} from "./metadatas/git";
 import {getReadmeMetadata} from "./metadatas/readme";
 import {Page} from "puppeteer";
+import commandLineArgs from "command-line-args";
 
-const commandLineArgs = require("command-line-args");
-const audit = require("eco-index-audit/src/ecoindex/audit");
-const puppeteer = require("puppeteer");
-const path = require("path");
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import audit from "eco-index-audit/src/ecoindex/audit";
+import puppeteer from "puppeteer";
+import path from "path";
+
 
 const optionDefinitions = [
   { name: "path", type: String },
+
   { name: "url", type: String, multiple: true },
 ];
 
@@ -30,15 +34,18 @@ const optionDefinitions = [
   const fullPath = path.resolve(options.path);
 
   try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const packageJson = require(fullPath + "/package.json");
     metadata.packageJson = packageJson;
-  } catch (e) {}
+  } catch (e) {
+    console.error(e)
+  }
 
   const git = await getGitMetadata(fullPath);
   metadata.git = git;
   metadata.readme = getReadmeMetadata(fullPath);
 
-  for (let rule of rules) {
+  for (const rule of rules) {
     const auditResult = await rule(page, metadata);
     if (auditResult && result.audits) {
       result.audits.global[auditResult.name] = auditResult;
@@ -70,7 +77,7 @@ const optionDefinitions = [
 
     result.ecoIndex = await audit(url);
     await page.goto(url);
-    for (let rule of rulesPerPage) {
+    for (const rule of rulesPerPage) {
       const auditResult = await rule(page, metadata);
       if (auditResult && result.audits) {
         result.audits[url][auditResult.name] = auditResult;

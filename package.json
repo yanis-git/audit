@@ -21,6 +21,7 @@
   "homepage": "https://github.com/EmmanuelDemey/audit#readme",
   "devDependencies": {
     "@types/command-line-args": "^5.2.0",
+    "@types/js-yaml": "^4.0.5",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
     "eslint": "^8.4.1",
@@ -31,6 +32,7 @@
   "dependencies": {
     "command-line-args": "^5.1.1",
     "eco-index-audit": "0.1.0",
+    "js-yaml": "^4.1.0",
     "puppeteer": "^10.0.0",
     "simple-git": "^2.44.0"
   }

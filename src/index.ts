@@ -3,24 +3,28 @@ import {Metadata, Result} from "./types";
 import {getGitMetadata} from "./metadatas/git";
 import {getReadmeMetadata} from "./metadatas/readme";
 import {Page} from "puppeteer";
-import commandLineArgs from "command-line-args";
+import commandLineArgs, {CommandLineOptions} from "command-line-args";
+import yaml from "js-yaml";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import audit from "eco-index-audit/src/ecoindex/audit";
 import puppeteer from "puppeteer";
 import path from "path";
+import fs from "fs";
 
 
 const optionDefinitions = [
   { name: "path", type: String },
-
+  { name: "config", type: String },
   { name: "url", type: String, multiple: true },
 ];
 
 (async () => {
-  const options = commandLineArgs(optionDefinitions);
+  const cliOptions = commandLineArgs(optionDefinitions);
+  const options: CommandLineOptions = cliOptions.config ? yaml.load(fs.readFileSync(path.resolve(cliOptions.config), 'utf-8')) as CommandLineOptions : cliOptions;
 
+  console.log(options)
   const result: Partial<Result> = {
     audits: {
       global: {},
@@ -31,25 +35,29 @@ const optionDefinitions = [
   const page: Page = await browser.newPage();
 
   const metadata: Metadata = {};
-  const fullPath = path.resolve(options.path);
 
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const packageJson = require(fullPath + "/package.json");
-    metadata.packageJson = packageJson;
-  } catch (e) {
-    console.error(e)
+  if(options.path) {
+    const fullPath = path.resolve(options.path);
+
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const packageJson = require(fullPath + "/package.json");
+      metadata.packageJson = packageJson;
+    } catch (e) {
+      console.error(e)
+    }
+
+    const git = await getGitMetadata(fullPath);
+    metadata.git = git;
+    metadata.readme = getReadmeMetadata(fullPath);
   }
 
-  const git = await getGitMetadata(fullPath);
-  metadata.git = git;
-  metadata.readme = getReadmeMetadata(fullPath);
 
   for (const rule of rules) {
     const auditResult = await rule(page, metadata);
-    if (auditResult && result.audits) {
+    /*if (auditResult && result.audits) {
       result.audits.global[auditResult.name] = auditResult;
-    }
+    }*/
   }
 
   const devToolsResponses = new Map();

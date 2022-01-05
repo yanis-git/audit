@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b099866f-bc01-422f-ade5-1280775e18b8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/rules/checkIfMainLang.ts" afterDir="false" />
+    <list default="true" id="b099866f-bc01-422f-ade5-1280775e18b8" name="Default Changelist" comment="feat: add checkIfLinkInsideAButton">
+      <change afterPath="$PROJECT_DIR$/demo/example.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rules/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rules/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rules/checkIfCypressAxe.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rules/checkIfCypressAxe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rules/checkIfCypressAxe.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rules/checkIfMomentDependency.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rules/checkIfMomentDependency.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,6 +19,17 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="6vi1rvhq" />
   </component>
   <component name="ProjectId" id="1ldyDSjQUk9aHZhVd1h2kkZeddB" />
   <component name="ProjectViewState">
@@ -52,6 +69,10 @@
       <workItem from="1628667113367" duration="828000" />
       <workItem from="1628682984177" duration="213000" />
       <workItem from="1628751418907" duration="135000" />
+      <workItem from="1639768990695" duration="1294000" />
+      <workItem from="1640525066672" duration="102000" />
+      <workItem from="1641312512976" duration="457000" />
+      <workItem from="1641385011522" duration="1178000" />
     </task>
     <task id="LOCAL-00001" summary="feat= add npm audit">
       <created>1609247677706</created>
@@ -88,7 +109,49 @@
       <option name="project" value="LOCAL" />
       <updated>1628669742313</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feat: add eslint">
+      <created>1639769859512</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1639769859512</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat: add husky pre-push hook">
+      <created>1639769979105</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1639769979105</updated>
+    </task>
+    <task id="LOCAL-00008" summary="fix: solve husky script">
+      <created>1639770003310</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1639770003310</updated>
+    </task>
+    <task id="LOCAL-00009" summary="feat: add lint to github action">
+      <created>1639770094711</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1639770094711</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fix: wrong indentation">
+      <created>1639770139657</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1639770139657</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat: add checkIfTableCaption">
+      <created>1641312880337</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1641312880337</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -101,6 +164,13 @@
     <MESSAGE value="refactor: create dedicated rules files" />
     <MESSAGE value="feat: add checkIfButtonInsideALink rule" />
     <MESSAGE value="feat: add checkIfLinkInsideAButton" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add checkIfLinkInsideAButton" />
+    <MESSAGE value="feat: add eslint" />
+    <MESSAGE value="feat: add husky" />
+    <MESSAGE value="feat: add husky pre-push hook" />
+    <MESSAGE value="fix: solve husky script" />
+    <MESSAGE value="feat: add lint to github action" />
+    <MESSAGE value="fix: wrong indentation" />
+    <MESSAGE value="feat: add checkIfTableCaption" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add checkIfTableCaption" />
   </component>
 </project>

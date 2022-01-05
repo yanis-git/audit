@@ -2,7 +2,7 @@ import {rules, rulesPerPage} from "./rules";
 import {Metadata, Result} from "./types";
 import {getGitMetadata} from "./metadatas/git";
 import {getReadmeMetadata} from "./metadatas/readme";
-import {Page} from "puppeteer";
+import {Page, Protocol} from "puppeteer";
 import commandLineArgs, {CommandLineOptions} from "command-line-args";
 import yaml from "js-yaml";
 
@@ -12,6 +12,8 @@ import audit from "eco-index-audit/src/ecoindex/audit";
 import puppeteer from "puppeteer";
 import path from "path";
 import fs from "fs";
+import ResponseReceivedEvent = Protocol.Network.ResponseReceivedEvent;
+import LoadingFinishedEvent = Protocol.Network.LoadingFinishedEvent;
 
 
 const optionDefinitions = [
@@ -55,24 +57,24 @@ const optionDefinitions = [
 
   for (const rule of rules) {
     const auditResult = await rule(page, metadata);
-    /*if (auditResult && result.audits) {
+    if (auditResult && result.audits) {
       result.audits.global[auditResult.name] = auditResult;
-    }*/
+    }
   }
 
   const devToolsResponses = new Map();
   const devTools = await page.target().createCDPSession();
   await devTools.send("Network.enable");
 
-  const requests: any = {};
-  devTools.on("Network.responseReceived", (event: any) => {
+  const requests: { [key: string]: { url?: string, size?: number } } = {};
+  devTools.on("Network.responseReceived", (event: ResponseReceivedEvent) => {
     requests[event.requestId] = {
       url: event.response.url,
     };
     devToolsResponses.set(event.requestId, event.response);
   });
 
-  devTools.on("Network.loadingFinished", (event: any) => {
+  devTools.on("Network.loadingFinished", (event: LoadingFinishedEvent) => {
     requests[event.requestId] = {
       ...requests[event.requestId],
       size: event.encodedDataLength,
@@ -94,8 +96,8 @@ const optionDefinitions = [
   }
 
   const domain = Object.values(requests)
-    .map((request: any) => request.url)
-    .map((url) => new URL(url).hostname)
+    .map((request) => request.url)
+    .map((url) => new URL(url as string).hostname)
     .reduce((acc: { [key: string]: number }, domain: string) => {
       if (acc[domain]) {
         return {

@@ -11,6 +11,7 @@ import {checkIfLandmarks} from "./checkIfLandmarks";
 import {checkIfReadme} from "./checkIfReadme";
 import {checkIfTitle} from "./checkIfTitle";
 import {checkIfTableCaption} from "./checkIfTableCaption";
+import {checkIfMultipleNavWithoutLabel} from "./checkIfMultupleNavWithoutLabel";
 
 export const rulesPerPage = [
     checkIfLinkInsideLabel,
@@ -23,6 +24,7 @@ export const rulesPerPage = [
     checkIfLandmarks,
     checkIfReadme,
     checkIfTitle,
-    checkIfTableCaption
+    checkIfTableCaption,
+    checkIfMultipleNavWithoutLabel
 ];
 export const rules = [checkIfMomentDependency, checkIfCypressAxe];

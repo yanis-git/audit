@@ -1,14 +1,35 @@
 import {AuditFunction, AuditResult} from "../types";
 import {Page} from "puppeteer";
 
-export const checkIfLandmarks: AuditFunction = async (page: Page): Promise<AuditResult | false> => {
-    const size = await page.evaluate(() => document.querySelectorAll("header, main, footer, nav, aside")?.length) as number;
-    if (size > 0) {
+export type CheckIfLandmarksAuditResult = AuditResult & {
+    payload: {
+        hasHeaderLandmark: boolean,
+        hasNavLandmark: boolean,
+        hasMainLandmark: boolean,
+        hasFooterLandmark: boolean
+    }
+}
+export const checkIfLandmarks: AuditFunction = async (page: Page): Promise<CheckIfLandmarksAuditResult | false> => {
+    const error = {
+        name: "check-if-landmarks",
+        message:
+            "Dous devez avoir une valise <header>, <nav>, <main> et <footer> dans votre page",
+    }
+    const hasHeaderLandmark = await page.evaluate(() => Array.from(document.querySelectorAll("header")).length === 0) as boolean;
+    const hasNavLandmark = await page.evaluate(() => Array.from(document.querySelectorAll("nav")).length === 0) as boolean;
+    const hasMainLandmark = await page.evaluate(() => Array.from(document.querySelectorAll("main")).length === 0) as boolean;
+    const hasFooterLandmark = await page.evaluate(() => Array.from(document.querySelectorAll("footer")).length === 0) as boolean;
+
+    if (hasHeaderLandmark && hasNavLandmark && hasMainLandmark && hasFooterLandmark) {
         return false;
     }
     return {
-        name: "check-if-landmarks",
-        message:
-            "Afin de structurer pour le mieux votre page, vous devriez utiliser des balises header, main, footer, nav ou encore aside",
+        ...error,
+        payload: {
+            hasHeaderLandmark,
+            hasNavLandmark,
+            hasMainLandmark,
+            hasFooterLandmark
+        }
     };
 };

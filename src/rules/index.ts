@@ -25,6 +25,7 @@ export const rulesPerPage = [
     checkIfReadme,
     checkIfTitle,
     checkIfTableCaption,
-    checkIfMultipleNavWithoutLabel
+    checkIfMultipleNavWithoutLabel,
+    checkIfLandmarks
 ];
 export const rules = [checkIfMomentDependency, checkIfCypressAxe];

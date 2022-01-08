@@ -8,6 +8,5 @@ export const checkIfImageWithoutAlt: AuditFunction = async (page: Page): Promise
     }
     return {
         name: "check-if-image-without-alt",
-        message: "Pour des raisons d'accessibilité, vous ne pouvez avoir d'images sant attributs alt'",
     };
 };

@@ -14,6 +14,7 @@ import path from "path";
 import fs from "fs";
 import ResponseReceivedEvent = Protocol.Network.ResponseReceivedEvent;
 import LoadingFinishedEvent = Protocol.Network.LoadingFinishedEvent;
+import {fr} from "./i18n/fr";
 
 
 const optionDefinitions = [
@@ -115,10 +116,11 @@ const optionDefinitions = [
   if (Object.keys(domain).length > 3 && result.audits) {
     result.audits.global["check-if-less-three-domains"] = {
       name: "check-if-less-three-domains",
-      message: "Vous devez utiliser moins de trois domaines",
       payload: domain,
     };
   }
+
+
 
   const topFive = Object.values(requests)
     .sort((r1: any, r2: any) => r2.size - r1.size)
@@ -126,6 +128,12 @@ const optionDefinitions = [
 
   result.biggestRequest = topFive as any;
 
+  Object.values(result.audits ?? {}).forEach(audit => {
+    Object.values(audit).forEach(result => {
+      result.message = fr.rules[result.name](result.payload)
+    })
+  })
+
   await browser.close();
-  console.log(result);
+  console.log(JSON.stringify(result, null, 2));
 })();

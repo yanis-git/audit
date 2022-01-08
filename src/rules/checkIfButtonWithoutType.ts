@@ -8,7 +8,5 @@ export const checkIfButtonWithoutType: AuditFunction = async (page: Page): Promi
     }
     return {
         name: "check-if-button-without-type",
-        message:
-            "Pour éviter des éventuels problèmes pour vos utilisateurs, nous vous conseillons de toujours définir l'attribut type pour un bouton",
     };
 };

@@ -8,7 +8,5 @@ export const checkIfMainLang: AuditFunction = async (page: Page): Promise<AuditR
     }
     return {
         name: "check-if-main-lang",
-        message:
-            "Vous devez avoir l'attribut lang présent sur la balise html",
     };
 };

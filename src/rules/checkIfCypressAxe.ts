@@ -12,7 +12,5 @@ export const checkIfCypressAxe: AuditFunction = async (page: Page, metadata: Met
     }
     return {
         name: "check-if-cypress-axe-dependency",
-        message:
-            "Il semblerait que vous utilisez Cypress pour vos tests d'interface. Vous pourriez installer également Cypress Axe afin de vérifier le niveau d'accessibilité de vos page.",
     };
 };

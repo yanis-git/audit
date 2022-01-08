@@ -8,7 +8,5 @@ export const checkIfMultipleNavWithoutLabel: AuditFunction = async (page: Page):
     }
     return {
         name: "check-if-multiple-nav-without-label",
-        message:
-            "VOus devez définir des libelles explicites pour vos balises nav",
     };
 };

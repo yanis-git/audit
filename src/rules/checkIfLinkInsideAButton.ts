@@ -7,8 +7,6 @@ export const checkIfLinkInsideAButton: AuditFunction = async (page: Page): Promi
         return false;
     }
     return {
-        name: "check-if-button-inside-link",
-        message:
-            "Sémantiquement, il est interdit d'avoir un lien dans un bouton",
+        name: "check-if-link-inside-button",
     };
 };

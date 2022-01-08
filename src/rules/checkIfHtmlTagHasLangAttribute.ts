@@ -10,7 +10,5 @@ export const checkIfHtmlTagHasLangAttribute: AuditFunction = async (
     }
     return {
         name: "check-if-html-tag-has-lang-attribute",
-        message:
-            "La balise HTML doit absolument définir l'attribut lang afin de configurer la langue par défaut de votre contenu",
     };
 };

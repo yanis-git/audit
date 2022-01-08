@@ -8,6 +8,5 @@ export const checkIfLinkInsideLabel: AuditFunction = async (page: Page): Promise
     }
     return {
         name: "check-if-link-inside-label",
-        message: "Pour des raisons d'accessibilité, vous ne pouvez avoir de liens dans un label de formulaire",
     };
 };

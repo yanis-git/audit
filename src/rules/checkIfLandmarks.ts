@@ -10,11 +10,6 @@ export type CheckIfLandmarksAuditResult = AuditResult & {
     }
 }
 export const checkIfLandmarks: AuditFunction = async (page: Page): Promise<CheckIfLandmarksAuditResult | false> => {
-    const error = {
-        name: "check-if-landmarks",
-        message:
-            "Dous devez avoir une valise <header>, <nav>, <main> et <footer> dans votre page",
-    }
     const hasHeaderLandmark = await page.evaluate(() => Array.from(document.querySelectorAll("header")).length === 0) as boolean;
     const hasNavLandmark = await page.evaluate(() => Array.from(document.querySelectorAll("nav")).length === 0) as boolean;
     const hasMainLandmark = await page.evaluate(() => Array.from(document.querySelectorAll("main")).length === 0) as boolean;
@@ -23,13 +18,15 @@ export const checkIfLandmarks: AuditFunction = async (page: Page): Promise<Check
     if (hasHeaderLandmark && hasNavLandmark && hasMainLandmark && hasFooterLandmark) {
         return false;
     }
+
+    const payload = {
+        hasHeaderLandmark,
+        hasNavLandmark,
+        hasMainLandmark,
+        hasFooterLandmark
+    }
     return {
-        ...error,
-        payload: {
-            hasHeaderLandmark,
-            hasNavLandmark,
-            hasMainLandmark,
-            hasFooterLandmark
-        }
+        name: "check-if-landmarks",
+        payload
     };
 };

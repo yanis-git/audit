@@ -13,7 +13,7 @@ export type AuditFunction = (page: any, metadata: Metadata) => Promise<AuditResu
 
 export interface AuditResult {
     name: string;
-    message: string;
+    message?: string;
     payload?: any;
 }
 

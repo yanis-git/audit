@@ -1,7 +1,7 @@
-import {AuditFunction, AuditResult, Metadata} from "../types";
+import {AuditFunction, Metadata} from "../types";
 import {Page} from "puppeteer";
 
-export const checkIfCypressAxe: AuditFunction = async (page: Page, metadata: Metadata): Promise<AuditResult | false> => {
+export const checkIfCypressAxe: AuditFunction = async (page: Page, metadata: Metadata): Promise<boolean> => {
     const devDependencies = metadata?.packageJson?.devDependencies ?? {};
 
     if (!Object.keys(devDependencies)?.includes("cypress")) {
@@ -10,7 +10,5 @@ export const checkIfCypressAxe: AuditFunction = async (page: Page, metadata: Met
     if (!Object.keys(devDependencies)?.includes("cypress-axe")) {
         return false;
     }
-    return {
-        name: "check-if-cypress-axe-dependency",
-    };
+    return true;
 };

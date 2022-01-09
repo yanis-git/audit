@@ -1,5 +1,5 @@
 import {rules, rulesPerPage} from "./rules";
-import {Metadata, Result} from "./types";
+import {AuditFunction, AuditResult, Metadata, Result} from "./types";
 import {getGitMetadata} from "./metadatas/git";
 import {getReadmeMetadata} from "./metadatas/readme";
 import {Page, Protocol} from "puppeteer";
@@ -15,7 +15,8 @@ import fs from "fs";
 import ResponseReceivedEvent = Protocol.Network.ResponseReceivedEvent;
 import LoadingFinishedEvent = Protocol.Network.LoadingFinishedEvent;
 import {fr} from "./i18n/fr";
-
+// @ts-ignore
+import kebabCase from "kebab-case";
 
 const optionDefinitions = [
   { name: "path", type: String },
@@ -56,8 +57,18 @@ const optionDefinitions = [
   }
 
 
-  for (const rule of rules) {
+  async function ruleAndFormat(rule: AuditFunction, page: Page, metadata: Metadata): Promise<AuditResult | false> {
     const auditResult = await rule(page, metadata);
+    if(auditResult === true) {
+      return {
+        name: kebabCase(rule.name)
+      } as AuditResult
+    }
+    return auditResult
+  }
+
+  for (const rule of rules) {
+    const auditResult = await ruleAndFormat(rule, page, metadata);
     if (auditResult && result.audits) {
       result.audits.global[auditResult.name] = auditResult;
     }
@@ -89,7 +100,7 @@ const optionDefinitions = [
     result.ecoIndex = await audit(url);
     await page.goto(url);
     for (const rule of rulesPerPage) {
-      const auditResult = await rule(page, metadata);
+      const auditResult = await ruleAndFormat(rule, page, metadata);
       if (auditResult && result.audits) {
         result.audits[url][auditResult.name] = auditResult;
       }
@@ -130,6 +141,7 @@ const optionDefinitions = [
 
   Object.values(result.audits ?? {}).forEach(audit => {
     Object.values(audit).forEach(result => {
+      console.log(result.name)
       result.message = fr.rules[result.name](result.payload)
     })
   })

@@ -9,7 +9,7 @@ export interface Metadata {
 export interface GitMetadata {
     remotes?: RemoteWithRefs[]
 }
-export type AuditFunction = (page: any, metadata: Metadata) => Promise<AuditResult | false>;
+export type AuditFunction = (page: any, metadata: Metadata) => Promise<AuditResult | boolean>;
 
 export interface AuditResult {
     name: string;

@@ -1,16 +1,13 @@
-import {AuditFunction, AuditResult} from "../types";
+import {AuditFunction} from "../types";
 import {Page} from "puppeteer";
 
-export const checkIfTitle: AuditFunction = async (page: Page): Promise<AuditResult | false> => {
-    const error = {
-        name: "check-if-title",
-    }
+export const checkIfTitle: AuditFunction = async (page: Page): Promise<boolean> => {
     const htmlNode = await page.evaluate(() => document.querySelector("title")) as HTMLTitleElement;
     if (htmlNode) {
         if(htmlNode.text === ''){
-            return error
+            return true
         }
         return false;
     }
-    return error;
+    return true;
 };

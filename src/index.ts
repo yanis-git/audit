@@ -15,6 +15,7 @@ import fs from "fs";
 import ResponseReceivedEvent = Protocol.Network.ResponseReceivedEvent;
 import LoadingFinishedEvent = Protocol.Network.LoadingFinishedEvent;
 import {fr} from "./i18n/fr";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import kebabCase from "kebab-case";
 

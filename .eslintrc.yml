@@ -10,4 +10,3 @@ extends:
   - "plugin:@typescript-eslint/recommended"
 plugins:
   - '@typescript-eslint'
-rules: {}

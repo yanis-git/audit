@@ -12,6 +12,11 @@ import {checkIfReadme} from "./checkIfReadme";
 import {checkIfTitle} from "./checkIfTitle";
 import {checkIfTableCaption} from "./checkIfTableCaption";
 import {checkIfMultipleNavWithoutLabel} from "./checkIfMultupleNavWithoutLabel";
+import {checkIfCi} from "./checkIfCI";
+
+export const asyncRulesPerPage = [
+
+]
 
 export const rulesPerPage = [
     checkIfLinkInsideLabel,
@@ -28,4 +33,6 @@ export const rulesPerPage = [
     checkIfMultipleNavWithoutLabel,
     checkIfLandmarks
 ];
+
+export const asyncRules = [ checkIfCi ];
 export const rules = [checkIfMomentDependency, checkIfCypressAxe];

@@ -8,6 +8,7 @@ export type Dictionary = {
 }
 export const fr: Dictionary = {
     rules: {
+        "check-if-ci": () => "Afin d'assurer une qualité optimale pour votre projet, nous vous recommendons de mettre en place une solution d'intégration continue",
         "check-if-button-inside-link": () => "Sémantiquement, il est interdit d'avoir un bouton dans un lien",
         "check-if-button-without-type": () => "Pour éviter des éventuels problèmes pour vos utilisateurs, nous vous conseillons de toujours définir l'attribut type pour un bouton",
         "check-if-cypress-axe-dependency": () => "Il semblerait que vous utilisez Cypress pour vos tests d'interface. Vous pourriez installer également Cypress Axe afin de vérifier le niveau d'accessibilité de vos page.",

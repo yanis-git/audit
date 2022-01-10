@@ -1,4 +1,5 @@
 import {RemoteWithRefs} from "simple-git";
+import {Inquirer} from "inquirer";
 
 export interface Metadata {
     packageJson?: any;
@@ -9,6 +10,8 @@ export interface Metadata {
 export interface GitMetadata {
     remotes?: RemoteWithRefs[]
 }
+
+export type AsyncAuditFunction = (inquirer: Inquirer) => Promise<AuditResult | boolean>
 export type AuditFunction = (page: any, metadata: Metadata) => Promise<AuditResult | boolean>;
 
 export interface AuditResult {

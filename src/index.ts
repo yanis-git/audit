@@ -1,4 +1,4 @@
-import {rules, rulesPerPage} from "./rules";
+import {rules, rulesPerPage, asyncRules, asyncRulesPerPage} from "./rules";
 import {AuditFunction, AuditResult, Metadata, Result} from "./types";
 import {getGitMetadata} from "./metadatas/git";
 import {getReadmeMetadata} from "./metadatas/readme";
@@ -18,6 +18,8 @@ import {fr} from "./i18n/fr";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import kebabCase from "kebab-case";
+import inquirer from "inquirer";
+
 
 const optionDefinitions = [
   { name: "path", type: String },
@@ -68,8 +70,25 @@ const optionDefinitions = [
     return auditResult
   }
 
+  async function asyncRuleAndFormat(rule: (inquirer: inquirer.Inquirer) => Promise<AuditResult | boolean>) {
+    const auditResult = await rule(inquirer);
+    if(auditResult === true) {
+      return {
+        name: kebabCase(rule.name)
+      } as AuditResult
+    }
+    return auditResult
+  }
+
   for (const rule of rules) {
     const auditResult = await ruleAndFormat(rule, page, metadata);
+    if (auditResult && result.audits) {
+      result.audits.global[auditResult.name] = auditResult;
+    }
+  }
+
+  for (const rule of asyncRules) {
+    const auditResult = await asyncRuleAndFormat(rule);
     if (auditResult && result.audits) {
       result.audits.global[auditResult.name] = auditResult;
     }
@@ -94,6 +113,7 @@ const optionDefinitions = [
     };
   });
   for (const url of options.url) {
+    console.log("Auditing " + url)
     if (result.audits) {
       result.audits[url] = {};
     }
@@ -104,6 +124,13 @@ const optionDefinitions = [
       const auditResult = await ruleAndFormat(rule, page, metadata);
       if (auditResult && result.audits) {
         result.audits[url][auditResult.name] = auditResult;
+      }
+    }
+
+    for (const rule of asyncRulesPerPage) {
+      const auditResult = await asyncRuleAndFormat(rule);
+      if (auditResult && result.audits) {
+        result.audits.global[auditResult.name] = auditResult;
       }
     }
   }
@@ -142,7 +169,6 @@ const optionDefinitions = [
 
   Object.values(result.audits ?? {}).forEach(audit => {
     Object.values(audit).forEach(result => {
-      console.log(result.name)
       result.message = fr.rules[result.name](result.payload)
     })
   })

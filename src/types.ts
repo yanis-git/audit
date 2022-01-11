@@ -15,9 +15,10 @@ export type AsyncAuditFunction = (inquirer: Inquirer) => Promise<AuditResult | b
 export type AuditFunction = (page: any, metadata: Metadata) => Promise<AuditResult | boolean>;
 
 export interface AuditResult {
-    name: string;
+    name?: string;
     message?: string;
     payload?: any;
+    links?: string[]
 }
 
 export interface Result {

@@ -13,6 +13,7 @@ import {checkIfTitle} from "./checkIfTitle";
 import {checkIfTableCaption} from "./checkIfTableCaption";
 import {checkIfMultipleNavWithoutLabel} from "./checkIfMultupleNavWithoutLabel";
 import {checkIfCi} from "./checkIfCI";
+import {checkIfCountInsteadOfExist} from "./checkIfCountInsteadOfExist";
 
 export const asyncRulesPerPage = [
 
@@ -34,5 +35,5 @@ export const rulesPerPage = [
     checkIfLandmarks
 ];
 
-export const asyncRules = [ checkIfCi ];
+export const asyncRules = [ checkIfCi, checkIfCountInsteadOfExist ];
 export const rules = [checkIfMomentDependency, checkIfCypressAxe];

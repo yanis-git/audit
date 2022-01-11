@@ -67,6 +67,10 @@ const optionDefinitions = [
         name: kebabCase(rule.name)
       } as AuditResult
     }
+
+    if(auditResult !== false && !auditResult.name) {
+      auditResult.name = kebabCase(rule.name)
+    }
     return auditResult
   }
 
@@ -77,19 +81,24 @@ const optionDefinitions = [
         name: kebabCase(rule.name)
       } as AuditResult
     }
+
+    if(auditResult !== false && !auditResult.name) {
+      auditResult.name = kebabCase(rule.name)
+    }
+
     return auditResult
   }
 
   for (const rule of rules) {
     const auditResult = await ruleAndFormat(rule, page, metadata);
-    if (auditResult && result.audits) {
+    if (auditResult && auditResult.name && result.audits) {
       result.audits.global[auditResult.name] = auditResult;
     }
   }
 
   for (const rule of asyncRules) {
     const auditResult = await asyncRuleAndFormat(rule);
-    if (auditResult && result.audits) {
+    if (auditResult && auditResult.name && result.audits) {
       result.audits.global[auditResult.name] = auditResult;
     }
   }
@@ -122,14 +131,14 @@ const optionDefinitions = [
     await page.goto(url);
     for (const rule of rulesPerPage) {
       const auditResult = await ruleAndFormat(rule, page, metadata);
-      if (auditResult && result.audits) {
+      if (auditResult && auditResult.name && result.audits) {
         result.audits[url][auditResult.name] = auditResult;
       }
     }
 
     for (const rule of asyncRulesPerPage) {
       const auditResult = await asyncRuleAndFormat(rule);
-      if (auditResult && result.audits) {
+      if (auditResult && auditResult.name && result.audits) {
         result.audits.global[auditResult.name] = auditResult;
       }
     }
@@ -167,9 +176,10 @@ const optionDefinitions = [
 
   result.biggestRequest = topFive as any;
 
+
   Object.values(result.audits ?? {}).forEach(audit => {
     Object.values(audit).forEach(result => {
-      result.message = fr.rules[result.name](result.payload)
+      result.message = fr.rules[result.name as string](result.payload)
     })
   })
 

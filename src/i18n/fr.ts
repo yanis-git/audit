@@ -26,5 +26,8 @@ export const fr: Dictionary = {
         "check-if-table-caption": () => "Vous devez avoir une balise caption inside a table",
         "check-if-title": () => "Vous devez avoir un titre principal pour votre page",
         "check-if-less-three-domains": (_: AuditResult) => "Vous devez utiliser moins de trois domaines",
+        "check-if-count-instead-of-exist": () => `
+            Si une requete SQL utilisant COUNT() peut etre remplacer par un EXIST, il est préférable, pour des raisons de performance, de choisir la deuxième solution. 
+        `
     }
 }

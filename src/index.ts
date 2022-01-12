@@ -31,7 +31,6 @@ const optionDefinitions = [
   const cliOptions = commandLineArgs(optionDefinitions);
   const options: CommandLineOptions = cliOptions.config ? yaml.load(fs.readFileSync(path.resolve(cliOptions.config), 'utf-8')) as CommandLineOptions : cliOptions;
 
-  console.log(options)
   const result: Partial<Result> = {
     audits: {
       global: {},
@@ -41,7 +40,9 @@ const optionDefinitions = [
   const browser = await puppeteer.launch();
   const page: Page = await browser.newPage();
 
-  const metadata: Metadata = {};
+  const metadata: Metadata = {
+    urls: options.url
+  };
 
   if(options.path) {
     const fullPath = path.resolve(options.path);
@@ -139,7 +140,7 @@ const optionDefinitions = [
     for (const rule of asyncRulesPerPage) {
       const auditResult = await asyncRuleAndFormat(rule);
       if (auditResult && auditResult.name && result.audits) {
-        result.audits.global[auditResult.name] = auditResult;
+        result.audits[url][auditResult.name] = auditResult;
       }
     }
   }

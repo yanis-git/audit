@@ -14,6 +14,7 @@ import {checkIfTableCaption} from "./checkIfTableCaption";
 import {checkIfMultipleNavWithoutLabel} from "./checkIfMultupleNavWithoutLabel";
 import {checkIfCi} from "./checkIfCI";
 import {checkIfCountInsteadOfExist} from "./checkIfCountInsteadOfExist";
+import {checkIfNoDuplicatePageTitle} from "./checkIfNoDuplicatePageTitle";
 
 export const asyncRulesPerPage = [
 
@@ -36,4 +37,4 @@ export const rulesPerPage = [
 ];
 
 export const asyncRules = [ checkIfCi, checkIfCountInsteadOfExist ];
-export const rules = [checkIfMomentDependency, checkIfCypressAxe];
+export const rules = [checkIfMomentDependency, checkIfCypressAxe, checkIfNoDuplicatePageTitle];

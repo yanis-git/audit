@@ -28,6 +28,7 @@ export const fr: Dictionary = {
         "check-if-less-three-domains": (_: AuditResult) => "Vous devez utiliser moins de trois domaines",
         "check-if-count-instead-of-exist": () => `
             Si une requete SQL utilisant COUNT() peut etre remplacer par un EXIST, il est préférable, pour des raisons de performance, de choisir la deuxième solution. 
-        `
+        `,
+        "check-if-no-duplicate-page-title": () => "Vous devez vous assurer que chaque page a un titre unique"
     }
 }

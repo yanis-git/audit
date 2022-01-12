@@ -4,7 +4,8 @@ import {Inquirer} from "inquirer";
 export interface Metadata {
     packageJson?: any;
     git?: GitMetadata;
-    readme?: boolean
+    readme?: boolean,
+    urls?: string[]
 }
 
 export interface GitMetadata {

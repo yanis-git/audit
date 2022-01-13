@@ -188,6 +188,7 @@ const optionDefinitions = [
   await browser.close();
 
   try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const { default: exporter } = require("./exporter/" + options.exporter);
     exporter(result)
   } catch (e){

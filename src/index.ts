@@ -24,6 +24,7 @@ import inquirer from "inquirer";
 const optionDefinitions = [
   { name: "path", type: String },
   { name: "config", type: String },
+  { name: "exporter", type: String },
   { name: "url", type: String, multiple: true },
 ];
 
@@ -185,5 +186,12 @@ const optionDefinitions = [
   })
 
   await browser.close();
-  console.log(JSON.stringify(result, null, 2));
+
+  try {
+    const { default: exporter } = require("./exporter/" + options.exporter);
+    exporter(result)
+  } catch (e){
+    console.error("This exporter does not exist");
+    console.error(e)
+  }
 })();

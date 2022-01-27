@@ -14,6 +14,7 @@ export interface GitMetadata {
 
 export type AsyncAuditFunction = (inquirer: Inquirer) => Promise<AuditResult | boolean>
 export type AuditFunction = (page: any, metadata: Metadata) => Promise<AuditResult | boolean>;
+export type RuleConfig = { categories: string[]};
 
 export interface AuditResult {
     name?: string;

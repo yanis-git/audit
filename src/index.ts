@@ -1,6 +1,6 @@
 import {rules, rulesPerPage, asyncRules, asyncRulesPerPage} from "./rules";
 import {AuditFunction, AuditResult, Metadata, Result} from "./types";
-import {getGitMetadata} from "./metadatas/git";
+import {clone, getGitMetadata} from "./metadatas/git";
 import {getReadmeMetadata} from "./metadatas/readme";
 import {Page, Protocol} from "puppeteer";
 import commandLineArgs, {CommandLineOptions} from "command-line-args";
@@ -46,12 +46,20 @@ const optionDefinitions = [
   };
 
   if(options.path) {
+
+    if(options.path.indexOf("https://") || options.path.indexOf("git://")){
+
+      const path = await clone(options.path);
+      options.path = path;
+    }
+
     const fullPath = path.resolve(options.path);
 
     try {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       const packageJson = require(fullPath + "/package.json");
       metadata.packageJson = packageJson;
+      console.log(metadata.packageJson)
     } catch (e) {
       console.error(e)
     }

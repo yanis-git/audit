@@ -15,6 +15,7 @@ import {checkIfMultipleNavWithoutLabel} from "./checkIfMultupleNavWithoutLabel";
 import {checkIfCi} from "./checkIfCI";
 import {checkIfCountInsteadOfExist} from "./checkIfCountInsteadOfExist";
 import {checkIfNoDuplicatePageTitle} from "./checkIfNoDuplicatePageTitle";
+import {checkIfTypescriptConstEnum} from "./checkIfTypescriptConstEnum";
 
 export const asyncRulesPerPage = [
 
@@ -36,5 +37,5 @@ export const rulesPerPage = [
     checkIfLandmarks
 ];
 
-export const asyncRules = [ checkIfCi, checkIfCountInsteadOfExist ];
+export const asyncRules = [ checkIfCi, checkIfCountInsteadOfExist, checkIfTypescriptConstEnum ];
 export const rules = [checkIfMomentDependency, checkIfCypressAxe, checkIfNoDuplicatePageTitle];

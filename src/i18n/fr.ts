@@ -29,6 +29,7 @@ export const fr: Dictionary = {
         "check-if-count-instead-of-exist": () => `
             Si une requete SQL utilisant COUNT() peut etre remplacer par un EXIST, il est préférable, pour des raisons de performance, de choisir la deuxième solution. 
         `,
-        "check-if-no-duplicate-page-title": () => "Vous devez vous assurer que chaque page a un titre unique"
+        "check-if-no-duplicate-page-title": () => "Vous devez vous assurer que chaque page a un titre unique",
+        "check-ifT-typescript-const-enum": () => "Pour des raisons de performance, il est préférable d'utiliser des const enums en TypeScript"
     }
 }

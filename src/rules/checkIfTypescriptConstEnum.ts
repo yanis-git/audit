@@ -8,7 +8,7 @@ export const checkIfTypescriptConstEnum: AsyncAuditFunction = async (inquirer: I
         message: "En Typescript, utilisez-vous des const enums plutot que des enums basiques ?",
         choices: ["Oui", "Non"]
     }]);
-    if(answers.checkIfCountInsteadOfExist){
+    if(answers.checkIfTypescriptConstEnum){
         return false
     }
     return {

@@ -189,6 +189,7 @@ const optionDefinitions = [
 
   Object.values(result.audits ?? {}).forEach(audit => {
     Object.values(audit).forEach(result => {
+      console.log(result.name)
       result.message = fr.rules[result.name as string](result.payload)
     })
   })

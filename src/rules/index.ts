@@ -16,9 +16,10 @@ import {checkIfCi} from "./checkIfCI";
 import {checkIfCountInsteadOfExist} from "./checkIfCountInsteadOfExist";
 import {checkIfNoDuplicatePageTitle} from "./checkIfNoDuplicatePageTitle";
 import {checkIfTypescriptConstEnum} from "./checkIfTypescriptConstEnum";
+import {checkIfImgRoleForSvgImage} from "./checkIfImgRoleForSvgImage";
 
 export const asyncRulesPerPage = [
-
+    checkIfImgRoleForSvgImage
 ]
 
 export const rulesPerPage = [

@@ -1,4 +1,4 @@
-import {AsyncAuditFunction, AuditResult} from "../types";
+import {AsyncAuditFunction} from "../types";
 import {Inquirer} from "inquirer";
 
 export const checkIfImgRoleForSvgImage: AsyncAuditFunction = async (inquirer: Inquirer): Promise<boolean> => {

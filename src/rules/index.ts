@@ -2,7 +2,6 @@ import {checkIfLinkInsideLabel} from "./checkIfLinkInsideLabel";
 import {checkIfHtmlTagHasLangAttribute} from "./checkIfHtmlTagHasLangAttribute";
 import {checkIfImageWithoutAlt} from "./checkIfImageWithoutAlt";
 import {checkIfButtonWithoutType} from "./checkIfButtonWithoutType";
-import {checkIfMomentDependency} from "./checkIfMomentDependency";
 import {checkIfButtonInsideALink} from "./checkIfButtonInsideALink";
 import {checkIfLinkInsideAButton} from "./checkIfLinkInsideAButton";
 import {checkIfMainLang} from "./checkIfMainLang";
@@ -17,6 +16,7 @@ import {checkIfCountInsteadOfExist} from "./checkIfCountInsteadOfExist";
 import {checkIfNoDuplicatePageTitle} from "./checkIfNoDuplicatePageTitle";
 import {checkIfTypescriptConstEnum} from "./checkIfTypescriptConstEnum";
 import {checkIfImgRoleForSvgImage} from "./checkIfImgRoleForSvgImage";
+import {checkMomentDependency, checkEslintDependency, checkHuskyDependency} from "./checkNPMDependencies";
 
 export const asyncRulesPerPage = [
     checkIfImgRoleForSvgImage
@@ -39,4 +39,4 @@ export const rulesPerPage = [
 ];
 
 export const asyncRules = [ checkIfCi, checkIfCountInsteadOfExist, checkIfTypescriptConstEnum ];
-export const rules = [checkIfMomentDependency, checkIfCypressAxe, checkIfNoDuplicatePageTitle];
+export const rules = [checkMomentDependency, checkEslintDependency, checkHuskyDependency, checkIfCypressAxe, checkIfNoDuplicatePageTitle];

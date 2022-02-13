@@ -5,7 +5,12 @@ export interface Metadata {
     packageJson?: any;
     git?: GitMetadata;
     readme?: boolean,
-    urls?: string[]
+    urls?: string[],
+    auditor?: {
+        name: string;
+        email: string;
+    },
+    projectName?: string;
 }
 
 export interface GitMetadata {

@@ -42,24 +42,35 @@ const optionDefinitions = [
   const page: Page = await browser.newPage();
 
   const metadata: Metadata = {
-    urls: options.url
+    urls: options.audit.urls
   };
 
-  if(options.path) {
+  if(options.auditor){
+    metadata.auditor = options.auditor;
+  }
 
-    if(options.path.indexOf("https://") || options.path.indexOf("git://")){
+  if(options.audit.projectName){
+    metadata.projectName = options.audit.projectName;
+  }
 
-      const path = await clone(options.path);
-      options.path = path;
+  const auditPath = options.audit.path;
+  if(auditPath) {
+
+    if(auditPath.indexOf("https://") >= 0|| auditPath.indexOf("git://") >= 0){
+
+      const clonePath = await clone(auditPath);
+      options.audit.path = clonePath;
     }
 
-    const fullPath = path.resolve(options.path);
+    const fullPath = path.resolve(options.audit.path);
 
     try {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       const packageJson = require(fullPath + "/package.json");
       metadata.packageJson = packageJson;
-      console.log(metadata.packageJson)
+      if(!metadata.projectName){
+        metadata.projectName = packageJson.name;
+      }
     } catch (e) {
       console.error(e)
     }
@@ -131,7 +142,7 @@ const optionDefinitions = [
       size: event.encodedDataLength,
     };
   });
-  for (const url of options.url) {
+  for (const url of options.audit.urls) {
     console.log("Auditing " + url)
     if (result.audits) {
       result.audits[url] = {};
@@ -199,7 +210,10 @@ const optionDefinitions = [
   try {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const { default: exporter } = require("./exporter/" + options.exporter);
-    exporter(result)
+    exporter({
+      ...result,
+      metadata
+    })
   } catch (e){
     console.error("This exporter does not exist");
     console.error(e)

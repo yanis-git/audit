@@ -1,5 +1,11 @@
-url:
-  - https://google.com
-  - https://google.com
-  - https://www.google.com/search?q=testing
+auditor:
+  name: Emmanuel DEMEY
+  email: demey.emmanuel@gmail.com
+
+audit:
+  path: ./
+  urls:
+    - https://google.com
+
 exporter: logger
+

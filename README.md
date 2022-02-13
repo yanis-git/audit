@@ -12,17 +12,22 @@ git clone https://github.com/EmmanuelDemey/audit
 
 ## Usage/Examples
 
-```shell
-npm run start -- --path ./ --url https://google.com/
-```
-
-You can also define your settings in a YAML configuration file. 
+You have to define your settings in a YAML configuration file. 
 
 ```yaml
-url:
-  - https://google.com
-    
-path: ./
+auditor:
+  name: Emmanuel DEMEY
+  email: demey.emmanuel@gmail.com
+
+audit:
+  path: ./
+  urls:
+    - http://localhost:3000
+
+exporter: logger
+
+
+
 ```
 
 And use this file thankt to the `--config` option. 

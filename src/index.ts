@@ -67,14 +67,13 @@ const optionDefinitions = [
     try {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       const {execSync} = require('child_process');
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
       const packageJson = require(fullPath + "/package.json");
       metadata.packageJson = packageJson;
       if(!metadata.projectName){
         metadata.projectName = packageJson.name;
       }
 
-      console.log("Installing NPM dependencies " + fullPath)
-      console.log("npm install --prefix ", fullPath)
       execSync("npm install --prefix ", {
         cwd: fullPath
       })
@@ -85,8 +84,8 @@ const optionDefinitions = [
     try {
       const git = await getGitMetadata(fullPath);
       metadata.git = git;
-    } catch {
-
+    } catch(e) {
+      console.error(e)
     }
 
     metadata.readme = getReadmeMetadata(fullPath);

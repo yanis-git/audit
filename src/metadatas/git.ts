@@ -17,12 +17,8 @@ export const getGitMetadata = async (baseDir: string) => {
     });
 
     const git: GitMetadata = {};
-    try {
-        const remotes = await gitClient.getRemotes(true);
-        git.remotes = remotes;
-    } catch (e) {
-        console.error(e)
-    }
+    const remotes = await gitClient.getRemotes(true);
+    git.remotes = remotes;
 
     return git;
 }

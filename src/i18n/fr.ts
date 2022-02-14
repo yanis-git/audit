@@ -32,7 +32,7 @@ export const fr: Dictionary = {
             Si une requete SQL utilisant COUNT() peut etre remplacer par un EXIST, il est préférable, pour des raisons de performance, de choisir la deuxième solution. 
         `,
         "check-if-no-duplicate-page-title": () => "Vous devez vous assurer que chaque page a un titre unique",
-        "check-ifT-typescript-const-enum": () => "Pour des raisons de performance, il est préférable d'utiliser des const enums en TypeScript",
+        "check-if-typescript-const-enum": () => "Pour des raisons de performance, il est préférable d'utiliser des const enums en TypeScript",
         "check-if-img-role-for-svg-image": () => "Pour des raisons de compatibilité des synthétiseur vocaux (VoiceOver sur Safari), il est recommandé de mettre le role=img sur les images au format SVG."
     }
 }

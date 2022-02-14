@@ -56,8 +56,8 @@ const optionDefinitions = [
   const auditPath = options.audit.path;
   if(auditPath) {
 
-    if(auditPath.indexOf("https://") >= 0|| auditPath.indexOf("git://") >= 0){
-
+    if(auditPath.indexOf("https://") === 0|| auditPath.indexOf("git://") === 0){
+      console.log("cloning")
       const clonePath = await clone(auditPath);
       options.audit.path = clonePath;
     }
@@ -66,17 +66,29 @@ const optionDefinitions = [
 
     try {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const {execSync} = require('child_process');
       const packageJson = require(fullPath + "/package.json");
       metadata.packageJson = packageJson;
       if(!metadata.projectName){
         metadata.projectName = packageJson.name;
       }
+
+      console.log("Installing NPM dependencies " + fullPath)
+      console.log("npm install --prefix ", fullPath)
+      execSync("npm install --prefix ", {
+        cwd: fullPath
+      })
     } catch (e) {
       console.error(e)
     }
 
-    const git = await getGitMetadata(fullPath);
-    metadata.git = git;
+    try {
+      const git = await getGitMetadata(fullPath);
+      metadata.git = git;
+    } catch {
+
+    }
+
     metadata.readme = getReadmeMetadata(fullPath);
   }
 

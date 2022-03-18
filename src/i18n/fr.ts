@@ -33,6 +33,7 @@ export const fr: Dictionary = {
         `,
         "check-if-no-duplicate-page-title": () => "Vous devez vous assurer que chaque page a un titre unique",
         "check-if-typescript-const-enum": () => "Pour des raisons de performance, il est préférable d'utiliser des const enums en TypeScript",
-        "check-if-img-role-for-svg-image": () => "Pour des raisons de compatibilité des synthétiseur vocaux (VoiceOver sur Safari), il est recommandé de mettre le role=img sur les images au format SVG."
+        "check-if-img-role-for-svg-image": () => "Pour des raisons de compatibilité des synthétiseur vocaux (VoiceOver sur Safari), il est recommandé de mettre le role=img sur les images au format SVG.",
+        "check-if-multiple-font": () => "Afin de limiter le nombre de requetes HTTP, nous sommes limité à une seule police de caractères"
     }
 }

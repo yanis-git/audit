@@ -139,10 +139,11 @@ const optionDefinitions = [
   const devTools = await page.target().createCDPSession();
   await devTools.send("Network.enable");
 
-  const requests: { [key: string]: { url?: string, size?: number } } = {};
+  const requests: { [key: string]: { url?: string, type?: string, size?: number } } = {};
   devTools.on("Network.responseReceived", (event: ResponseReceivedEvent) => {
     requests[event.requestId] = {
       url: event.response.url,
+      type: event.response.mimeType
     };
     devToolsResponses.set(event.requestId, event.response);
   });
@@ -176,6 +177,7 @@ const optionDefinitions = [
     }
   }
 
+  console.log(requests);
   const domain = Object.values(requests)
     .map((request) => request.url)
     .map((url) => new URL(url as string).hostname)
@@ -197,6 +199,14 @@ const optionDefinitions = [
     result.audits.global["check-if-less-three-domains"] = {
       name: "check-if-less-three-domains",
       payload: domain,
+    };
+  }
+
+  const fonts = Object.values(requests).filter(request => request.type?.indexOf("font/") === 0);
+  if(fonts.length > 1 && result.audits){
+    result.audits.global["check-if-multiple-font"] = {
+      name: "check-if-multiple-font",
+      payload: fonts,
     };
   }
 

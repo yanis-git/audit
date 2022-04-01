@@ -9,6 +9,7 @@ export type Dictionary = {
 export const fr: Dictionary = {
     rules: {
         "check-if-ci": () => "Afin d'assurer une qualité optimale pour votre projet, nous vous recommendons de mettre en place une solution d'intégration continue",
+        "check-if-button-inside-a-link": () => "Sémantiquement, il est interdit d'avoir un lien dans un bouton",
         "check-if-button-inside-link": () => "Sémantiquement, il est interdit d'avoir un bouton dans un lien",
         "check-if-button-without-type": () => "Pour éviter des éventuels problèmes pour vos utilisateurs, nous vous conseillons de toujours définir l'attribut type pour un bouton",
         "check-if-cypress-axe-dependency": () => "Il semblerait que vous utilisez Cypress pour vos tests d'interface. Vous pourriez installer également Cypress Axe afin de vérifier le niveau d'accessibilité de vos page.",
@@ -34,6 +35,7 @@ export const fr: Dictionary = {
         "check-if-no-duplicate-page-title": () => "Vous devez vous assurer que chaque page a un titre unique",
         "check-if-typescript-const-enum": () => "Pour des raisons de performance, il est préférable d'utiliser des const enums en TypeScript",
         "check-if-img-role-for-svg-image": () => "Pour des raisons de compatibilité des synthétiseur vocaux (VoiceOver sur Safari), il est recommandé de mettre le role=img sur les images au format SVG.",
-        "check-if-multiple-font": () => "Afin de limiter le nombre de requetes HTTP, nous sommes limité à une seule police de caractères"
+        "check-if-multiple-font": () => "Afin de limiter le nombre de requetes HTTP, nous sommes limité à une seule police de caractères",
+        "check-if-facil-it-domains": () => "Si vous souhaitez avoir une application accessible, vous ne devez pas dire que c'est le cas juste parce que vous utilisé FacilIT."
     }
 }

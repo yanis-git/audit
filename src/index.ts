@@ -57,7 +57,6 @@ const optionDefinitions = [
   if(auditPath) {
 
     if(auditPath.indexOf("https://") === 0|| auditPath.indexOf("git://") === 0){
-      console.log("cloning")
       const clonePath = await clone(auditPath);
       options.audit.path = clonePath;
     }
@@ -177,7 +176,6 @@ const optionDefinitions = [
     }
   }
 
-  console.log(requests);
   const domain = Object.values(requests)
     .map((request) => request.url)
     .map((url) => new URL(url as string).hostname)
@@ -195,12 +193,21 @@ const optionDefinitions = [
       }
     }, {});
 
+
+  if(Object.keys(domain).includes("ws.facil-iti.com") && result.audits){
+    result.audits.global["check-if-facil-it-domains"] = {
+      name: "check-if-facil-it-domains",
+      payload: domain,
+    };
+  }
+
   if (Object.keys(domain).length > 3 && result.audits) {
     result.audits.global["check-if-less-three-domains"] = {
       name: "check-if-less-three-domains",
       payload: domain,
     };
   }
+
 
   const fonts = Object.values(requests).filter(request => request.type?.indexOf("font/") === 0);
   if(fonts.length > 1 && result.audits){
@@ -221,7 +228,7 @@ const optionDefinitions = [
 
   Object.values(result.audits ?? {}).forEach(audit => {
     Object.values(audit).forEach(result => {
-      console.log(result.name)
+      console.log(result.name);
       result.message = fr.rules[result.name as string](result.payload)
     })
   })

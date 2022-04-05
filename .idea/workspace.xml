@@ -2,20 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b099866f-bc01-422f-ade5-1280775e18b8" name="Default Changelist" comment="feat: add checkIfLinkInsideAButton">
-      <change afterPath="$PROJECT_DIR$/demo/example.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rules/checkIfCypressAxe.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rules/checkIfCypressAxe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rules/checkIfCypressAxe.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rules/checkIfMomentDependency.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rules/checkIfMomentDependency.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -31,6 +27,9 @@
   <component name="MacroExpansionManager">
     <option name="directoryName" value="6vi1rvhq" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="1ldyDSjQUk9aHZhVd1h2kkZeddB" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -40,7 +39,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/rules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -73,6 +72,7 @@
       <workItem from="1640525066672" duration="102000" />
       <workItem from="1641312512976" duration="457000" />
       <workItem from="1641385011522" duration="1178000" />
+      <workItem from="1649150407122" duration="74000" />
     </task>
     <task id="LOCAL-00001" summary="feat= add npm audit">
       <created>1609247677706</created>

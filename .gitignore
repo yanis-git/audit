@@ -106,3 +106,7 @@ dist
 *.js
 
 .git_repo/*
+
+
+# Mac Tmp file
+.DS_Store

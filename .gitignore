@@ -108,5 +108,8 @@ dist
 .git_repo/*
 
 
-# Mac Tmp file
+# Mac tmp file
 .DS_Store
+
+# intellij tmp folder
+.idea
